@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentStep : 0,
+      currentPage : "",
     }
   }
 
@@ -17,16 +18,19 @@ class App extends Component {
 
   clickNext = () => {
     this.setState(preState  => ({
-      currentStep : preState.currentStep + 1
+      currentStep : preState.currentStep + 1,
+      // currentPage : "step"+String.valueOf(preState.currentStep + 1)+".html",
+      currentPage : "step"+(preState.currentStep + 1)+".html"
     }));
-    console.log(this.state.currentStep);
+    console.log(this.state.currentPage);
   }
 
   clickPrevious = () => {
     this.setState(preState  => ({
-      currentStep : preState.currentStep - 1
+      currentStep : preState.currentStep - 1,
+      currentPage : "step"+(preState.currentStep - 1)+".html",
     }));
-    console.log(this.state.currentStep);
+    console.log(this.state.currentPage);
   }
   render() {
     return (
@@ -45,6 +49,9 @@ class App extends Component {
 
         <Button type="primary" onClick = {this.clickPrevious.bind(this)}>previous</Button>
         <Button type="primary" onClick = {this.clickNext.bind(this)}>next</Button>
+      </div>
+      <div>
+        <iframe src={this.state.currentPage}></iframe>
       </div>
       </div>
      
